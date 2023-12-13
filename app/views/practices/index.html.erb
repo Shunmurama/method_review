@@ -1,20 +1,21 @@
 <div class='col-md-8 offset-md-1'>
       <h2>メソッドの説明</h2>
 
-  <%= form_with model: @practice, url: practices_path, method: :post do |f| %>
-      <div>
+  <div class="card-body">
+    <%= form_with model: @practice, url: practices_path, method: :post do |f| %>
+      <div class="col">
         <%= f.label :method, "メソッド名" %>
         <%= f.text_field :method %>
       </div>
-      <div>
+      <div class="col">
         <%= f.label :text, "説明" %>
         <%= f.text_area :text %>
       </div>
       <div>
         <%= f.submit "登録" %>
       </div>
-
-  <% end %>
+    <% end %>
+  </div>
 
  <table class='table table-hover table-inverse'>
   <thead>
@@ -22,14 +23,17 @@
       <th></th>
       <th>名前</th>
       <th>説明</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @practices.each do |practice| %>
       <tr>
-        <td><%= practice.method %></td>
+        <td></td>
+        <td><%= link_to practice.method, edit_practice_path(practice.id) %></td>
         <td><%= practice.text %></td>
+        <td><%= link_to '削除', practice_path(practice.id), method: :delete %></td>
       </tr>
     <% end %>
   </tbody>
